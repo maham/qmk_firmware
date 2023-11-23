@@ -40,6 +40,9 @@ void caps_word_toggle(void);
 /** @brief Gets whether currently active. */
 bool is_caps_word_on(void);
 
+/** @brief Gets remaining idle time */
+uint16_t caps_word_remaining_time(void);
+
 /**
  * @brief Caps Word set callback.
  *

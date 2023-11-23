@@ -83,4 +83,12 @@ bool is_caps_word_on(void) {
     return caps_word_active;
 }
 
+uint16_t caps_word_remaining_time(void) {
+#if CAPS_WORD_IDLE_TIMEOUT > 0
+    return idle_timer - timer_read();
+#else
+    return 0;
+#endif // CAPS_WORD_IDLE_TIMEOUT > 0
+}
+
 __attribute__((weak)) void caps_word_set_user(bool active) {}
