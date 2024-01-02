@@ -2,6 +2,7 @@
 
 #include "keymap_swedish_mac_iso.h"
 #include "color.h"
+#include "transactions.h"
 
 enum maham_layers {
   _QWERTY,
@@ -15,33 +16,33 @@ enum maham_layers {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_QWERTY] = LAYOUT(
-    SE_SECT,        KC_1,           KC_2,           KC_3,           KC_4,           KC_5,                                           KC_6,           KC_7,           KC_8,           KC_9,           KC_0,           SE_PLUS,
+    KC_NO,          KC_F1,          KC_F2,          KC_F3,          KC_F4,          KC_F5,                                          KC_F6,          KC_F7,          KC_F8,          KC_F9,          KC_F10,         KC_NO,
     _______,        KC_Q,           KC_W,           KC_E,           KC_R,           KC_T,                                           KC_Y,           KC_U,           KC_I,           KC_O,           KC_P,           SE_ARNG,
     _______,        KC_A,           KC_S,           KC_D,           KC_F,           KC_G,                                           KC_H,           KC_J,           KC_K,           KC_L,           SE_ODIA,        SE_ADIA,
-    _______,        KC_Z,           KC_X,           KC_C,           KC_V,           KC_B,           KC_LBRC,        KC_RBRC,        KC_N,           KC_M,           KC_COMM,        KC_DOT,         SE_MINS,        SE_QUOT,
-    OSM(MOD_LSFT),  MO(_LOWER),     _______,        _______,        _______,        MO(_LOWER),     SH_T(KC_SPC),   KC_SPC,        MO(_RAISE),      _______,        _______,        _______,        MO(_RAISE),     OSM(MOD_RSFT)
+    _______,        KC_Z,           KC_X,           KC_C,           KC_V,           KC_B,           KC_NO,          KC_NO,          KC_N,           KC_M,           KC_COMM,        KC_DOT,         SE_MINS,        SE_QUOT,
+    OSM(MOD_LSFT),  MO(_LOWER),     _______,        _______,        MO(_LOWER),     SH_T(KC_SPC),   KC_NO,          KC_NO,          KC_SPC,         MO(_RAISE),     _______,        _______,        MO(_RAISE),     OSM(MOD_RSFT)
   ),
 
   [_LOWER] = LAYOUT(
-    _______,        KC_F11,         KC_F12,         KC_F13,         KC_F14,         KC_F15,                                         KC_F6,          KC_F7,          KC_F8,          KC_F9,          KC_F10,         _______,
-    _______,        KC_1,           KC_2,           KC_3,           KC_4,           KC_5,                                           SE_AMPR,        SE_SLSH,        SE_LPRN,        SE_RPRN,        SE_EQL,         SE_QUES,
-    _______,        _______,        KC_LEFT,        KC_UP,          KC_DOWN,        KC_RIGHT,                                       _______,        SE_PIPE,        SE_LBRC,        SE_RBRC,        SE_AEQL,        SE_PLMN,
-    _______,        _______,        _______,        _______,        _______,        _______,        _______,        _______,        _______,        SE_BSLS,        SE_LCBR,        SE_RCBR,        SE_NEQL,        SE_IQUE,
+    _______,        KC_F11,         KC_F12,         KC_F13,         KC_F14,         KC_F15,                                         KC_F16,         KC_F17,         KC_F18,         KC_F19,         KC_F20,         _______,
+    _______,        KC_1,           KC_2,           KC_3,           KC_4,           KC_5,                                           KC_6,           KC_7,           KC_8,           KC_9,           KC_0,           SE_PLUS,
+    _______,        _______,        KC_LEFT,        KC_UP,          KC_DOWN,        KC_RIGHT,                                       SE_AMPR,        SE_SLSH,        SE_LPRN,        SE_RPRN,        SE_EQL,         SE_QUES,
+    _______,        _______,        _______,        _______,        _______,        _______,        _______,        SE_TILD,        SE_CIRC,        SE_PIPE,        SE_LBRC,        SE_RBRC,        SE_AEQL,        SE_PLMN,
     _______,        _______,        _______,        _______,        _______,        _______,        _______,        _______,        _______,        _______,        _______,        _______,        _______,        _______
   ),
 
   [_RAISE] = LAYOUT(
-    _______,        KC_F1,          KC_F2,          KC_F3,          KC_F4,          KC_F5,                                          KC_F16,         KC_F17,         KC_F18,         KC_F19,         KC_F20,         _______,
-    SE_DEG,         SE_EXLM,        SE_DQUO,        SE_HASH,        SE_EURO,        SE_PERC,                                        KC_6,           KC_7,           KC_8,           KC_9,           KC_0,           _______,
-    SE_PILC,        SE_COPY,        SE_TM,          SE_PND,         SE_DLR,         SE_INFN,                                        _______,        _______,        _______,        _______,        _______,        _______,
-    SE_BULT,        SE_IEXL,        SE_YEN,         SE_CENT,        SE_PERM,        SE_BSLS,        _______,        _______,        _______,        _______,        _______,        _______,        _______,        _______,
+    _______,        KC_F11,         KC_F12,         KC_F13,         KC_F14,         KC_F15,                                         KC_F16,         KC_F17,         KC_F18,         KC_F19,         KC_F20,         _______,
+    SE_SECT,        KC_1,           KC_2,           KC_3,           KC_4,           KC_5,                                           KC_6,           KC_7,           KC_8,           KC_9,           KC_0,           _______,
+    SE_DEG,         SE_EXLM,        SE_DQUO,        SE_HASH,        SE_EURO,        SE_PERC,                                        _______,        _______,        _______,        _______,        _______,        _______,
+    SE_PILC,        SE_COPY,        SE_TM,          SE_PND,         SE_DLR,         SE_INFN,        _______,        _______,        _______,        _______,        _______,        _______,        _______,        _______,
     _______,        _______,        _______,        _______,        _______,        _______,        _______,        _______,        _______,        _______,        _______,        _______,        _______,        _______
   ),
 
   [_ADJUST] = LAYOUT(
     _______,        _______,        _______,        _______,        _______,        _______,                                        _______,        _______,        _______,        _______,        _______,        _______,
     _______,        _______,        _______,        _______,        _______,        _______,                                        _______,        _______,        _______,        _______,        _______,        _______,
-    _______,        _______,        _______,        _______,        _______,        _______,                                        _______,        _______,        _______,        _______,        _______,        _______,
+    _______,        _______,        _______,        _______,        _______,        _______,                                        _______,        SE_DLR,         _______,        _______,        _______,        _______,
     _______,        _______,        _______,        _______,        _______,        _______,        _______,        _______,        _______,        _______,        _______,        _______,        _______,        _______,
     _______,        _______,        _______,        _______,        _______,        _______,        _______,        _______,        _______,        _______,        _______,        _______,        _______,        _______
   ),
@@ -55,11 +56,44 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
 };
 
+layer_state_t layer_state_set_user(layer_state_t state) {
+    return update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
+}
+
+//
+// Encoders
+//
+
 #if defined(ENCODER_ENABLE) && defined(ENCODER_MAP_ENABLE)
 const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
 
 };
 #endif // defined(ENCODER_ENABLE) && defined(ENCODER_MAP_ENABLE)
+
+#ifdef ENCODER_ENABLE
+bool encoder_update_user(uint8_t index, bool clockwise) {
+    // 0 is left-half encoder,
+    // 1 is right-half encoder
+    if (index == 0) {
+        // Volume control
+        if (clockwise) {
+            tap_code(KC_VOLD);
+        } else {
+            tap_code(KC_VOLU);
+        }
+    } else if (index == 1) {
+        // Page up/Page down
+        if (clockwise) {
+            tap_code(KC_PGDN);
+        } else {
+            tap_code(KC_PGUP);
+        }
+    }
+
+    return false;
+}
+#endif
+
 
 //
 // Disable controller LED
@@ -82,6 +116,24 @@ void keyboard_pre_init_user(void) {
 #define MHM_IS_MOD_ACTIVE(mod) (get_mods() & MOD_BIT(mod) || get_oneshot_mods() & MOD_BIT(mod))
 
 static const uint8_t MAX_V = 0x80;
+
+void mhm_rgb_matrix_set_color_all(uint8_t r, uint8_t g, uint8_t b) {
+  for (uint8_t led = 6; led <= 37; led++) {
+    rgb_matrix_set_color(led, r, g, b);
+  }
+  for (uint8_t led = 44; led <= 75; led++) {
+    rgb_matrix_set_color(led, r, g, b);
+  }
+}
+
+void mhm_rgb_underglow_set_color_all(uint8_t r, uint8_t g, uint8_t b) {
+  for (uint8_t led = 0; led < 6; led++) {
+    rgb_matrix_set_color(led, r, g, b);
+  }
+  for (uint8_t led = 38; led < 44; led++) {
+    rgb_matrix_set_color(led, r, g, b);
+  }
+}
 
 void mhm_set_color_hsv(uint8_t led, HSV hsv) {
   hsv.v = MAX_V;
@@ -111,16 +163,18 @@ void mhm_set_color_hsv_range(uint8_t first_led, uint8_t last_led, HSV hsv) {
 void mhm_set_color_hsv_all(HSV hsv) {
   hsv.v = MAX_V;
   RGB rgb = hsv_to_rgb(hsv);
-  rgb_matrix_set_color_all(rgb.r, rgb.g, rgb.b);
+  mhm_rgb_matrix_set_color_all(rgb.r, rgb.g, rgb.b);
 }
 
 #define MHM_SET_COLOR_HSV_ALL(hsv) mhm_set_color_hsv_all((HSV){hsv})
 
 bool rgb_matrix_indicators_advanced_user(uint8_t ledMin, uint8_t ledMax) {
+  mhm_rgb_underglow_set_color_all(0, 0, 0);
+
   if(is_swap_hands_on()) {
     MHM_SET_COLOR_HSV_ALL(HSV_CHARTREUSE);
   } else {
-    MHM_SET_COLOR_HSV_ALL(HSV_WHITE);
+    mhm_set_color_hsv_all((HSV){30, 180, 255});
   }
 
   if (is_caps_word_on() && caps_word_remaining_time() > 0) {
@@ -258,3 +312,47 @@ bool caps_word_press_user(uint16_t keycode) {
 }
 
 #endif
+
+//
+// Sync sides
+//
+
+// #define SPLIT_TRANSACTION_IDS_USER USER_SYNC_A
+
+// typedef struct _master_to_slave_t {
+//     int m2s_data;
+// } master_to_slave_t;
+
+// typedef struct _slave_to_master_t {
+//     int s2m_data;
+// } slave_to_master_t;
+
+// void user_sync_a_slave_handler(uint8_t in_buflen, const void* in_data, uint8_t out_buflen, void* out_data) {
+//     const master_to_slave_t* m2s = (master_to_slave_t*)in_data;
+//     slave_to_master_t *s2m = (slave_to_master_t*)out_data;
+//     s2m->s2m_data = m2s->m2s_data + 5;
+// }
+
+// void keyboard_post_init_user(void) {
+//     transaction_register_rpc(USER_SYNC_A, user_sync_a_slave_handler);
+// }
+
+//
+// Housekeeping
+//
+
+// void housekeepint_task_user(void) {
+//   if (is_keyboard_master()) {
+//     static uint32_t last_sync = 0;
+//     if (timer_elapsed32(last_sync) > 500) {
+//       master_to_slave_t m2s = {6};
+//       slave_to_master_t s2m = {0};
+
+//       if (transaction_master_send(USER_SYNC_A, sizeof(m2s), &m2s, sizeof(s2m), &s2m)) {
+//         last_sync = timer_read32();
+//       } else {
+//         dprintf("Sync failed\n");
+//       }
+//     }
+//   }
+// }

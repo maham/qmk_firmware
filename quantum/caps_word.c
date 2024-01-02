@@ -88,7 +88,7 @@ uint16_t caps_word_remaining_time(void) {
     return idle_timer - timer_read();
 #else
     return 0;
-#endif // CAPS_WORD_IDLE_TIMEOUT > 0
+#endif
 }
 
 __attribute__((weak)) void caps_word_set_user(bool active) {}
