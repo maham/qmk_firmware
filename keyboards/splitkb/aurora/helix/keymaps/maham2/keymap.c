@@ -1,6 +1,7 @@
 #include QMK_KEYBOARD_H
 
-#include "keymap_swedish_mac_iso.h"
+#include "keymap_swedish_pro_mac_iso.h"
+// #include "keymap_swedish.h"
 #include "color.h"
 #include "transactions.h"
 
@@ -9,50 +10,64 @@ enum maham_layers {
   _LOWER,
   _RAISE,
   _ADJUST,
-  _FUNCTION,
+  _GAMING,
 };
+
+#define LOWER         MO(_LOWER)
+#define RAISE         MO(_RAISE)
+#define ADJUST        MO(_ADJUST)
+
+#define UNDO          LCTL(KC_Z)
+#define REDO          LCTL(KC_Y)
+#define CUT           LGUI(KC_X)
+#define COPY          LGUI(KC_C)
+#define PASTE         LGUI(KC_V)
+
+#define MUTE          KC_KB_MUTE
+#define VOLU          KC_KB_VOLUME_UP
+#define VOLD          KC_KB_VOLUME_DOWN
 
 #include "g/keymap_combo.h"
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_QWERTY] = LAYOUT(
     KC_NO,          KC_F1,          KC_F2,          KC_F3,          KC_F4,          KC_F5,                                          KC_F6,          KC_F7,          KC_F8,          KC_F9,          KC_F10,         KC_NO,
-    _______,        KC_Q,           KC_W,           KC_E,           KC_R,           KC_T,                                           KC_Y,           KC_U,           KC_I,           KC_O,           KC_P,           SE_ARNG,
-    _______,        KC_A,           KC_S,           KC_D,           KC_F,           KC_G,                                           KC_H,           KC_J,           KC_K,           KC_L,           SE_ODIA,        SE_ADIA,
-    _______,        KC_Z,           KC_X,           KC_C,           KC_V,           KC_B,           KC_NO,          KC_NO,          KC_N,           KC_M,           KC_COMM,        KC_DOT,         SE_MINS,        SE_QUOT,
-    OSM(MOD_LSFT),  MO(_LOWER),     _______,        _______,        MO(_LOWER),     SH_T(KC_SPC),   KC_NO,          KC_NO,          KC_SPC,         MO(_RAISE),     _______,        _______,        MO(_RAISE),     OSM(MOD_RSFT)
+    KC_NO,          KC_Q,           KC_W,           KC_E,           KC_R,           KC_T,                                           KC_Y,           KC_U,           KC_I,           KC_O,           KC_P,           SE_ARNG,
+    KC_NO,          KC_A,           KC_S,           KC_D,           KC_F,           KC_G,                                           KC_H,           KC_J,           KC_K,           KC_L,           SE_ODIA,        SE_ADIA,
+    KC_NO,          KC_Z,           KC_X,           KC_C,           KC_V,           KC_B,           CM_TOGG,        KC_NO,          KC_N,           KC_M,           KC_COMM,        KC_DOT,         SE_MINS,        SE_QUOT,
+    OSM(MOD_LSFT),  KC_NO,          KC_NO,          ADJUST,         LOWER,          KC_SPC,         SH_MON,         KC_NO,          KC_SPC,         RAISE,          ADJUST,         KC_NO,          KC_NO,          OSM(MOD_RSFT)
   ),
 
   [_LOWER] = LAYOUT(
-    _______,        KC_F11,         KC_F12,         KC_F13,         KC_F14,         KC_F15,                                         KC_F16,         KC_F17,         KC_F18,         KC_F19,         KC_F20,         _______,
-    _______,        KC_1,           KC_2,           KC_3,           KC_4,           KC_5,                                           KC_6,           KC_7,           KC_8,           KC_9,           KC_0,           SE_PLUS,
-    _______,        _______,        KC_LEFT,        KC_UP,          KC_DOWN,        KC_RIGHT,                                       SE_AMPR,        SE_SLSH,        SE_LPRN,        SE_RPRN,        SE_EQL,         SE_QUES,
-    _______,        _______,        _______,        _______,        _______,        _______,        _______,        SE_TILD,        SE_CIRC,        SE_PIPE,        SE_LBRC,        SE_RBRC,        SE_AEQL,        SE_PLMN,
-    _______,        _______,        _______,        _______,        _______,        _______,        _______,        _______,        _______,        _______,        _______,        _______,        _______,        _______
+    KC_NO,          KC_F11,         KC_F12,         KC_F13,         KC_F14,         KC_F15,                                         KC_F16,         KC_F17,         KC_F18,         KC_F19,         KC_F20,         KC_NO,
+    KC_NO,          KC_1,           KC_2,           KC_3,           KC_4,           KC_5,                                           KC_6,           KC_7,           KC_8,           KC_9,           KC_0,           SE_PLUS,
+    KC_NO,          KC_NO,          KC_LEFT,        KC_UP,          KC_DOWN,        KC_RIGHT,                                       SE_AMPR,        SE_SLSH,        SE_LPRN,        SE_RPRN,        SE_EQL,         SE_QUES,
+    KC_NO,          KC_NO,          KC_NO,          KC_PGUP,        KC_PGDN,        KC_NO,          KC_NO,          SE_TILD,        SE_SECT,        SE_PIPE,        SE_LBRC,        SE_RBRC,        KC_NO,          KC_NO,
+    _______,        KC_NO,          KC_NO,          _______,        KC_NO,          _______,        KC_NO,          KC_NO,          _______,        KC_NO,          _______,        KC_NO,          KC_NO,          _______
   ),
 
   [_RAISE] = LAYOUT(
-    _______,        KC_F11,         KC_F12,         KC_F13,         KC_F14,         KC_F15,                                         KC_F16,         KC_F17,         KC_F18,         KC_F19,         KC_F20,         _______,
-    SE_SECT,        KC_1,           KC_2,           KC_3,           KC_4,           KC_5,                                           KC_6,           KC_7,           KC_8,           KC_9,           KC_0,           _______,
-    SE_DEG,         SE_EXLM,        SE_DQUO,        SE_HASH,        SE_EURO,        SE_PERC,                                        _______,        _______,        _______,        _______,        _______,        _______,
-    SE_PILC,        SE_COPY,        SE_TM,          SE_PND,         SE_DLR,         SE_INFN,        _______,        _______,        _______,        _______,        _______,        _______,        _______,        _______,
-    _______,        _______,        _______,        _______,        _______,        _______,        _______,        _______,        _______,        _______,        _______,        _______,        _______,        _______
+    KC_NO,          KC_F11,         KC_F12,         KC_F13,         KC_F14,         KC_F15,                                         KC_F16,         KC_F17,         KC_F18,         KC_F19,         KC_F20,         KC_NO,
+    KC_NO,          KC_1,           KC_2,           KC_3,           KC_4,           KC_5,                                           KC_6,           KC_7,           KC_8,           KC_9,           KC_0,           KC_NO,
+    KC_NO,          SE_EXLM,        SE_DQUO,        SE_HASH,        SE_EURO,        SE_PERC,                                        KC_LEFT,        KC_DOWN,        KC_UP,          KC_RIGHT,       KC_NO,          KC_NO,
+    SE_TILD,        KC_NO,          SE_AT,          SE_PND,         SE_DLR,         KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_PGDN,        KC_PGUP,        KC_NO,          KC_NO,          KC_NO,
+    _______,        KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          _______
   ),
 
   [_ADJUST] = LAYOUT(
-    _______,        _______,        _______,        _______,        _______,        _______,                                        _______,        _______,        _______,        _______,        _______,        _______,
-    _______,        _______,        _______,        _______,        _______,        _______,                                        _______,        _______,        _______,        _______,        _______,        _______,
-    _______,        _______,        _______,        _______,        _______,        _______,                                        _______,        SE_DLR,         _______,        _______,        _______,        _______,
-    _______,        _______,        _______,        _______,        _______,        _______,        _______,        _______,        _______,        _______,        _______,        _______,        _______,        _______,
-    _______,        _______,        _______,        _______,        _______,        _______,        _______,        _______,        _______,        _______,        _______,        _______,        _______,        _______
+    KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,                                          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,
+    KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,                                          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,
+    KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,                                          KC_NO,          SE_DLR,         KC_NO,          KC_NO,          KC_NO,          KC_NO,
+    KC_NO,          UNDO,           CUT,            COPY,           PASTE,          REDO,           TG(_GAMING),    KC_NO,          KC_NO,          MUTE,           VOLD,           VOLU,           KC_NO,          KC_NO,
+    _______,        KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          _______
   ),
 
-  [_FUNCTION] = LAYOUT(
-    _______,        _______,        _______,        _______,        _______,        _______,                                        _______,        _______,        _______,        _______,        _______,        _______,
-    _______,        _______,        _______,        _______,        _______,        _______,                                        _______,        _______,        _______,        _______,        _______,        _______,
-    _______,        _______,        _______,        _______,        _______,        _______,                                        _______,        _______,        _______,        _______,        _______,        _______,
-    _______,        _______,        _______,        _______,        _______,        _______,        _______,        _______,        _______,        _______,        _______,        _______,        _______,        _______,
-    _______,        _______,        _______,        _______,        _______,        _______,        _______,        _______,        _______,        _______,        _______,        _______,        _______,        _______
+  [_GAMING] = LAYOUT(
+    KC_ESC,         KC_F1,          KC_F2,          KC_F3,          KC_F4,          KC_F5,                                          KC_F6,          KC_F7,          KC_F8,          KC_F9,          KC_F10,         KC_BSPC,
+    KC_TAB,         KC_Q,           KC_W,           KC_E,           KC_R,           KC_T,                                           KC_Y,           KC_U,           KC_I,           KC_O,           KC_P,           SE_ARNG,
+    KC_NO,          KC_A,           KC_S,           KC_D,           KC_F,           KC_G,                                           KC_H,           KC_J,           KC_K,           KC_L,           SE_ODIA,        SE_ADIA,
+    KC_LSFT,        KC_Z,           KC_X,           KC_C,           KC_V,           KC_B,           CM_TOGG,        SE_TILD,        KC_N,           KC_M,           KC_COMM,        KC_DOT,         SE_MINS,        SE_QUOT,
+    KC_LCTL,        KC_LALT,        KC_LGUI,        ADJUST,         LOWER,          KC_SPC,         SH_MON,         KC_ENT,         KC_SPC,         RAISE,          ADJUST,         KC_RGUI,        KC_RALT,        KC_RCTL
   ),
 };
 
@@ -219,6 +234,10 @@ bool rgb_matrix_indicators_advanced_user(uint8_t ledMin, uint8_t ledMax) {
   if (MHM_IS_MOD_ACTIVE(KC_RCTL)) {
     MHM_SET_COLOR_HSV(53, HSV_PURPLE);
     MHM_SET_COLOR_HSV(59, HSV_PURPLE);
+  }
+
+  if (!is_combo_enabled()) {
+    MHM_SET_COLOR_HSV(24, HSV_RED);
   }
 
   return false;
